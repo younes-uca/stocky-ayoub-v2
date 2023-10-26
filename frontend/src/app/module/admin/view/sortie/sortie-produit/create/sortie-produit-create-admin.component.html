@@ -1,0 +1,203 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'sortieProduit.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'sortieProduit.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'sortieProduit.reference' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'sortieProduit.reference' | translate}}" id="1" [(ngModel)]="item.reference"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitReference}"  />
+                                                    <small class='p-error' *ngIf='!validSortieProduitReference'>Reference est obligatoire.</small>
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="2">{{'sortieProduit.dateSortieProduit' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="2"  [showTime]="true" [showSeconds]="false" placeholder="{{'sortieProduit.dateSortieProduit' | translate}}"  [(ngModel)]="item.dateSortieProduit"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="3">{{'sortieProduit.total' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="3" placeholder="{{'sortieProduit.total' | translate}}" [(ngModel)]="item.total"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="4">{{'sortieProduit.totalHT' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="4" placeholder="{{'sortieProduit.totalHT' | translate}}" [(ngModel)]="item.totalHT"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="5">{{'sortieProduit.tauxTva' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="tauxTvas" [(ngModel)]="item.tauxTva" id="5" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'sortieProduit.tauxTva' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="6">{{'sortieProduit.totalTVA' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="6" placeholder="{{'sortieProduit.totalTVA' | translate}}" [(ngModel)]="item.totalTVA"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="7">{{'sortieProduit.totalHTTC' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'sortieProduit.totalHTTC' | translate}}" [(ngModel)]="item.totalHTTC"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="8">{{'sortieProduit.depot' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="depots" [(ngModel)]="item.depot" id="8" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'sortieProduit.depot' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="9">{{'sortieProduit.description' | translate}}</label>
+                                                    <textarea id="9" pInputTextarea rows="5" cols="30" placeholder="{{'sortieProduit.description' | translate}}"  [(ngModel)]="item.description"
+                                                             ></textarea>
+                                                    
+                                                </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="10">{{'sortieProduit.collaborateur' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="collaborateurs" [(ngModel)]="item.collaborateur" id="10" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="prenom" placeholder="{{'sortieProduit.collaborateur' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                </div>
+                            </p-tabPanel>
+                                    <p-tabPanel header="{{'sortieProduit.sortieProduitItems' | translate}}">
+                                        <p-tabView [(activeIndex)]="activeTab">
+                                            <p-tabPanel header="Création">
+                                                    <div class="grid">
+                                                                    <div class="field col-11 md:col-6">
+                                                                        <label>Produit<span style="color: red;">*</span></label>
+                                                                        <p-dropdown  appendTo="body"  [options]="produits" [(ngModel)]="sortieProduitItemsElement.produit"
+                                                                                     id="1"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="reference"
+                                                                                     placeholder="Produit"  [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitItemsProduit}" >
+                                                                        </p-dropdown>
+                                                                        <small class='p-error' *ngIf='!validSortieProduitItemsProduit'>Produit est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="2">Quantite<span style="color: red;">*</span></label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="quantite" placeholder="Quantite"  [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitItemsQuantite}" [(ngModel)]="sortieProduitItemsElement.quantite"></p-inputNumber>
+                                                                        <small class='p-error' *ngIf='!validSortieProduitItemsQuantite'>Quantite est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="3">Prix<span style="color: red;">*</span></label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="prix" placeholder="Prix"  [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitItemsPrix}" [(ngModel)]="sortieProduitItemsElement.prix"></p-inputNumber>
+                                                                        <small class='p-error' *ngIf='!validSortieProduitItemsPrix'>Prix est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="4">Remise<span style="color: red;">*</span></label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="remise" placeholder="Remise"  [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitItemsRemise}" [(ngModel)]="sortieProduitItemsElement.remise"></p-inputNumber>
+                                                                        <small class='p-error' *ngIf='!validSortieProduitItemsRemise'>Remise est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="5">Prix unitaire ttc<span style="color: red;">*</span></label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="prixUnitaireTtc" placeholder="Prix unitaire ttc"  [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitItemsPrixUnitaireTtc}" [(ngModel)]="sortieProduitItemsElement.prixUnitaireTtc"></p-inputNumber>
+                                                                        <small class='p-error' *ngIf='!validSortieProduitItemsPrixUnitaireTtc'>PrixUnitaireTtc est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="6">Prix uht<span style="color: red;">*</span></label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="prixUht" placeholder="Prix uht"  [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitItemsPrixUht}" [(ngModel)]="sortieProduitItemsElement.prixUht"></p-inputNumber>
+                                                                        <small class='p-error' *ngIf='!validSortieProduitItemsPrixUht'>PrixUht est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-11 md:col-6">
+                                                                        <label>Taux tva</label>
+                                                                        <p-dropdown  appendTo="body"  [options]="tauxTvas" [(ngModel)]="sortieProduitItemsElement.tauxTva"
+                                                                                     id="7"  [filter]="true" filterMatchMode="contains" [showClear]="true" optionLabel="libelle"
+                                                                                     placeholder="Taux tva"  >
+                                                                        </p-dropdown>
+                                                                        
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="8">Montant ht<span style="color: red;">*</span></label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="montantHt" placeholder="Montant ht"  [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitItemsMontantHt}" [(ngModel)]="sortieProduitItemsElement.montantHt"></p-inputNumber>
+                                                                        <small class='p-error' *ngIf='!validSortieProduitItemsMontantHt'>MontantHt est obligatoire.</small>
+                                                                    </div>
+                                                                    <div class="field col-12 md:col-6">
+                                                                        <label for="9">Montant ttc<span style="color: red;">*</span></label>
+                                                                        <p-inputNumber class="mb-2 mr-2" id="montantTtc" placeholder="Montant ttc"  [ngClass]="{'ng-invalid ng-dirty' : !validSortieProduitItemsMontantTtc}" [(ngModel)]="sortieProduitItemsElement.montantTtc"></p-inputNumber>
+                                                                        <small class='p-error' *ngIf='!validSortieProduitItemsMontantTtc'>MontantTtc est obligatoire.</small>
+                                                                    </div>
+                                                        <div class="field col-12 md:col-1">
+                                                            <button pButton pRipple type="button" icon="pi pi-plus" class="mt-4" label="OK" (click)="addSortieProduitItems()"></button>
+                                                        </div>
+
+                                                    </div>
+                                            </p-tabPanel>
+                                            <p-tabPanel header="Liste {{item.sortieProduitItems?.length > 0 ? '(' + item.sortieProduitItems?.length + ')' : ''}}">
+                                                    <div class="card">
+                                                        <p-table [value]="item.sortieProduitItems" [scrollable]="true" scrollHeight="200px">
+                                                            <ng-template pTemplate="header">
+                                                                <tr>
+                                                                                <th>Produit</th>
+                                                                                <th>Quantite</th>
+                                                                                <th>Prix</th>
+                                                                                <th>Remise</th>
+                                                                                <th>Prix unitaire ttc</th>
+                                                                                <th>Prix uht</th>
+                                                                                <th>Taux tva</th>
+                                                                                <th>Montant ht</th>
+                                                                                <th>Montant ttc</th>
+                                                                    <th>Actions</th>
+                                                                </tr>
+                                                            </ng-template>
+                                                            <ng-template pTemplate="body" let-p>
+                                                                <tr>
+                                                                            <td>{{p.produit?.reference}}</td>
+                                                                                <td>{{p.quantite}}</td>
+                                                                                <td>{{p.prix}}</td>
+                                                                                <td>{{p.remise}}</td>
+                                                                                <td>{{p.prixUnitaireTtc}}</td>
+                                                                                <td>{{p.prixUht}}</td>
+                                                                            <td>{{p.tauxTva?.libelle}}</td>
+                                                                                <td>{{p.montantHt}}</td>
+                                                                                <td>{{p.montantTtc}}</td>
+                                                                    <td>
+                                                                        <button (click)="deleteSortieProduitItems(p)" pButton type="button" icon="pi pi-times"  class="p-button-rounded p-button-danger"></button>
+                                                                        <button (click)="editSortieProduitItems(p)" pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-success mr-2"></button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ng-template>
+                                                        </p-table>
+                                                    </div>
+
+                                            </p-tabPanel>
+                                        </p-tabView>
+                                    </p-tabPanel>
+
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="grid-step">
+                        <div style="margin-left: auto;">
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                        </div>
+                        <div>
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+                        </div>
+
+                </div>
+            </ng-template>
+
+
+
+    </p-dialog>

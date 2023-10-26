@@ -1,0 +1,68 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'paiement.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'paiement.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'paiement.dateEmission' | translate}}</label>
+                        <p-calendar id="1" [disabled]="true"  [showTime]="true" [showSeconds]="false" placeholder="{{'paiement.dateEmission' | translate}}"  [(ngModel)]="item.dateEmission" dateFormat="{{dateFormat}}"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'paiement.proprietaireChequeEffet' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'paiement.proprietaireChequeEffet' | translate}}" autofocus  id="2" [(ngModel)]="item.proprietaireChequeEffet?.nom">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'paiement.compte' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'paiement.compte' | translate}}" autofocus  id="3" [(ngModel)]="item.compte?.numero">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="4">{{'paiement.typePaiement' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'paiement.typePaiement' | translate}}" autofocus  id="4" [(ngModel)]="item.typePaiement?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="5">{{'paiement.codeChequeEffet' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'paiement.codeChequeEffet' | translate}}" autofocus  id="5" [(ngModel)]="item.codeChequeEffet">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="6">{{'paiement.beneficiaire' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'paiement.beneficiaire' | translate}}" autofocus  id="6" [(ngModel)]="item.beneficiaire?.nom">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="7">{{'paiement.dateEcheance' | translate}}</label>
+                        <p-calendar id="7" [disabled]="true"  [showTime]="true" [showSeconds]="false" placeholder="{{'paiement.dateEcheance' | translate}}"  [(ngModel)]="item.dateEcheance" dateFormat="{{dateFormat}}"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="8">{{'paiement.dateEncaissement' | translate}}</label>
+                        <p-calendar id="8" [disabled]="true"  [showTime]="true" [showSeconds]="false" placeholder="{{'paiement.dateEncaissement' | translate}}"  [(ngModel)]="item.dateEncaissement" dateFormat="{{dateFormat}}"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="9">{{'paiement.montant' | translate}}</label>
+                        <p-inputNumber class="mb-2 mr-2" id="9" [disabled]="true" placeholder="{{'paiement.montant' | translate}}" [(ngModel)]="item.montant"></p-inputNumber>
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="10">{{'paiement.pathCheque' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'paiement.pathCheque' | translate}}" autofocus  id="10" [(ngModel)]="item.pathCheque">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="11">{{'paiement.description' | translate}}</label>
+                        <textarea id="11" pInputTextarea rows="5" cols="30" [disabled]="true" placeholder="{{'paiement.description' | translate}}"  [(ngModel)]="item.description"></textarea>
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="grid-footer">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

@@ -1,0 +1,36 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'proprietaireChequeEffetBanque.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'proprietaireChequeEffetBanque.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'proprietaireChequeEffetBanque.proprietaireChequeEffet' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'proprietaireChequeEffetBanque.proprietaireChequeEffet' | translate}}" autofocus  id="1" [(ngModel)]="item.proprietaireChequeEffet?.nom">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'proprietaireChequeEffetBanque.banque' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'proprietaireChequeEffetBanque.banque' | translate}}" autofocus  id="2" [(ngModel)]="item.banque?.libelle">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'proprietaireChequeEffetBanque.compte' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'proprietaireChequeEffetBanque.compte' | translate}}" autofocus  id="3" [(ngModel)]="item.compte?.numero">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="grid-footer">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+

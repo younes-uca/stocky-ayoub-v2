@@ -1,0 +1,133 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'produit.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'produit.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'produit.reference' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'produit.reference' | translate}}" id="1" [(ngModel)]="item.reference"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validProduitReference}"  />
+                                                    <small class='p-error' *ngIf='!validProduitReference'>Reference est obligatoire.</small>
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-5">
+                                                <label for="2">{{'produit.categorieProduit' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="categorieProduits" [(ngModel)]="item.categorieProduit" id="2" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="reference" placeholder="{{'produit.categorieProduit' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="col-1">
+                                                    <label></label>
+                                                    <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateCategorieProduit('CategorieProduit')" class="p-button-success one-colonne-btn-success-align"></button>
+                                                </div>
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="3">{{'produit.libelle' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'produit.libelle' | translate}}" id="3" [(ngModel)]="item.libelle"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-5">
+                                                <label for="4">{{'produit.marque' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="marques" [(ngModel)]="item.marque" id="4" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="reference" placeholder="{{'produit.marque' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="col-1">
+                                                    <label></label>
+                                                    <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateMarque('Marque')" class="p-button-success one-colonne-btn-success-align"></button>
+                                                </div>
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="5">{{'produit.prixAchatMoyen' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="5" placeholder="{{'produit.prixAchatMoyen' | translate}}" [(ngModel)]="item.prixAchatMoyen" [ngClass]="{'ng-invalid ng-dirty' : !validProduitPrixAchatMoyen}"  >
+                                                    </p-inputNumber>
+                                                    <small class='p-error' *ngIf='!validProduitPrixAchatMoyen'>PrixAchatMoyen est obligatoire.</small>
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="6">{{'produit.prixVente' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="6" placeholder="{{'produit.prixVente' | translate}}" [(ngModel)]="item.prixVente"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="7">{{'produit.prix' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="7" placeholder="{{'produit.prix' | translate}}" [(ngModel)]="item.prix" [ngClass]="{'ng-invalid ng-dirty' : !validProduitPrix}"  >
+                                                    </p-inputNumber>
+                                                    <small class='p-error' *ngIf='!validProduitPrix'>Prix est obligatoire.</small>
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="8">{{'produit.remise' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="8" placeholder="{{'produit.remise' | translate}}" [(ngModel)]="item.remise" [ngClass]="{'ng-invalid ng-dirty' : !validProduitRemise}"  >
+                                                    </p-inputNumber>
+                                                    <small class='p-error' *ngIf='!validProduitRemise'>Remise est obligatoire.</small>
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="9">{{'produit.prixUnitaireTtc' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="9" placeholder="{{'produit.prixUnitaireTtc' | translate}}" [(ngModel)]="item.prixUnitaireTtc" [ngClass]="{'ng-invalid ng-dirty' : !validProduitPrixUnitaireTtc}"  >
+                                                    </p-inputNumber>
+                                                    <small class='p-error' *ngIf='!validProduitPrixUnitaireTtc'>PrixUnitaireTtc est obligatoire.</small>
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="10">{{'produit.prixUht' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="10" placeholder="{{'produit.prixUht' | translate}}" [(ngModel)]="item.prixUht" [ngClass]="{'ng-invalid ng-dirty' : !validProduitPrixUht}"  >
+                                                    </p-inputNumber>
+                                                    <small class='p-error' *ngIf='!validProduitPrixUht'>PrixUht est obligatoire.</small>
+                                                </div>
+
+                                            <div class="field col-11 md:col-6">
+                                                <label for="11">{{'produit.tauxTva' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="tauxTvas" [(ngModel)]="item.tauxTva" id="11" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'produit.tauxTva' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="12">{{'produit.montantHt' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="12" placeholder="{{'produit.montantHt' | translate}}" [(ngModel)]="item.montantHt" [ngClass]="{'ng-invalid ng-dirty' : !validProduitMontantHt}"  >
+                                                    </p-inputNumber>
+                                                    <small class='p-error' *ngIf='!validProduitMontantHt'>MontantHt est obligatoire.</small>
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="13">{{'produit.montantTtc' | translate}}<span style="color: red;">*</span></label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="13" placeholder="{{'produit.montantTtc' | translate}}" [(ngModel)]="item.montantTtc" [ngClass]="{'ng-invalid ng-dirty' : !validProduitMontantTtc}"  >
+                                                    </p-inputNumber>
+                                                    <small class='p-error' *ngIf='!validProduitMontantTtc'>MontantTtc est obligatoire.</small>
+                                                </div>
+
+                                </div>
+                            </p-tabPanel>
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="grid-step">
+                        <div style="margin-left: auto;">
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                        </div>
+                        <div>
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+                        </div>
+
+                </div>
+            </ng-template>
+
+            <app-categorie-produit-create-admin></app-categorie-produit-create-admin>
+            <app-marque-create-admin></app-marque-create-admin>
+
+
+    </p-dialog>

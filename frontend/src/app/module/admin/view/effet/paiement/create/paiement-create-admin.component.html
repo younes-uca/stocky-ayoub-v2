@@ -1,0 +1,132 @@
+        <p-dialog [(visible)]="createDialog" [style]="{width: '70vw'}" header="{{'paiement.tabPan' | translate}}" [modal]="true" styleClass="p-fluid" [maximizable]="true" [draggable]="false" [resizable]="false">
+            <ng-template pTemplate="content" >
+                        <p-tabView>
+                            <p-tabPanel header="{{'paiement.tabPan' | translate}}">
+                                <div class="grid">
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="1">{{'paiement.dateEmission' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="1"  [showTime]="true" [showSeconds]="false" placeholder="{{'paiement.dateEmission' | translate}}"  [(ngModel)]="item.dateEmission"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                            <div class="field col-11 md:col-5">
+                                                <label for="2">{{'paiement.proprietaireChequeEffet' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="proprietaireChequeEffets" [(ngModel)]="item.proprietaireChequeEffet" id="2" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="nom" placeholder="{{'paiement.proprietaireChequeEffet' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="col-1">
+                                                    <label></label>
+                                                    <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateProprietaireChequeEffet('ProprietaireChequeEffet')" class="p-button-success one-colonne-btn-success-align"></button>
+                                                </div>
+                                            <div class="field col-11 md:col-5">
+                                                <label for="3">{{'paiement.compte' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="comptes" [(ngModel)]="item.compte" id="3" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="numero" placeholder="{{'paiement.compte' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="col-1">
+                                                    <label></label>
+                                                    <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateCompte('Compte')" class="p-button-success one-colonne-btn-success-align"></button>
+                                                </div>
+                                            <div class="field col-11 md:col-5">
+                                                <label for="4">{{'paiement.typePaiement' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="typePaiements" [(ngModel)]="item.typePaiement" id="4" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="libelle" placeholder="{{'paiement.typePaiement' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="col-1">
+                                                    <label></label>
+                                                    <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateTypePaiement('TypePaiement')" class="p-button-success one-colonne-btn-success-align"></button>
+                                                </div>
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="5">{{'paiement.codeChequeEffet' | translate}}<span style="color: red;">*</span></label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'paiement.codeChequeEffet' | translate}}" id="5" [(ngModel)]="item.codeChequeEffet"
+                                                            [ngClass]="{'ng-invalid ng-dirty' : !validPaiementCodeChequeEffet}"  />
+                                                    <small class='p-error' *ngIf='!validPaiementCodeChequeEffet'>CodeChequeEffet est obligatoire.</small>
+                                                </div>
+
+
+
+                                            <div class="field col-11 md:col-5">
+                                                <label for="6">{{'paiement.beneficiaire' | translate}}</label>
+                                                <p-dropdown  appendTo="body"  [options]="beneficiaires" [(ngModel)]="item.beneficiaire" id="6" [filter]="true" filterMatchMode="contains"
+                                                        [showClear]="true" optionLabel="nom" placeholder="{{'paiement.beneficiaire' | translate}}"  >
+                                                </p-dropdown>
+                                                
+                                            </div>
+                                                <div class="col-1">
+                                                    <label></label>
+                                                    <button pButton pRipple type="button" icon="pi pi-plus" (click)="openCreateBeneficiaire('Beneficiaire')" class="p-button-success one-colonne-btn-success-align"></button>
+                                                </div>
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="7">{{'paiement.dateEcheance' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="7"  [showTime]="true" [showSeconds]="false" placeholder="{{'paiement.dateEcheance' | translate}}"  [(ngModel)]="item.dateEcheance"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="8">{{'paiement.dateEncaissement' | translate}}</label>
+                                                    <p-calendar appendTo="body" id="8"  [showTime]="true" [showSeconds]="false" placeholder="{{'paiement.dateEncaissement' | translate}}"  [(ngModel)]="item.dateEncaissement"
+                                                            dateFormat="{{dateFormat}}"  >
+                                                    </p-calendar>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="9">{{'paiement.montant' | translate}}</label>
+                                                    <p-inputNumber class="mb-2 mr-2" id="9" placeholder="{{'paiement.montant' | translate}}" [(ngModel)]="item.montant"  >
+                                                    </p-inputNumber>
+                                                    
+                                                </div>
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="10">{{'paiement.pathCheque' | translate}}</label>
+                                                    <input class="mb-2 mr-2" type="text" pInputText  placeholder="{{'paiement.pathCheque' | translate}}" id="10" [(ngModel)]="item.pathCheque"
+                                                             />
+                                                    
+                                                </div>
+
+
+
+                                                <div class="field col-12 md:col-6">
+                                                    <label for="11">{{'paiement.description' | translate}}</label>
+                                                    <textarea id="11" pInputTextarea rows="5" cols="30" placeholder="{{'paiement.description' | translate}}"  [(ngModel)]="item.description"
+                                                             ></textarea>
+                                                    
+                                                </div>
+
+                                </div>
+                            </p-tabPanel>
+
+                        </p-tabView>
+
+            </ng-template>
+
+            <ng-template pTemplate="footer" >
+                <div class="grid-step">
+                        <div style="margin-left: auto;">
+                            <button pButton pRipple  label="{{'validate' | translate}}"  icon="pi pi-check" style="margin:10px" (click)="save()"></button>
+                        </div>
+                        <div>
+                            <button pButton pRipple  label="{{'cancel' | translate}}" icon="pi pi-times" class="p-button-outlined" (click)="hideCreateDialog()"></button>
+                        </div>
+
+                </div>
+            </ng-template>
+
+            <app-proprietaire-cheque-effet-create-admin></app-proprietaire-cheque-effet-create-admin>
+            <app-compte-create-admin></app-compte-create-admin>
+            <app-type-paiement-create-admin></app-type-paiement-create-admin>
+            <app-beneficiaire-create-admin></app-beneficiaire-create-admin>
+
+
+    </p-dialog>

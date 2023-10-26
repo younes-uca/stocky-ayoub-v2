@@ -1,0 +1,36 @@
+
+<p-dialog [(visible)]="viewDialog" [style]="{width: '70vw'}" header="{{'compte.tabPan' | translate}}" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <p-tabView>
+            <p-tabPanel header="{{'compte.tabPan' | translate}}">
+                <div class="grid">
+                    <div class="field col-12 md:col-6">
+                        <label for="1">{{'compte.numero' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'compte.numero' | translate}}" autofocus  id="1" [(ngModel)]="item.numero">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="2">{{'compte.proprietaireChequeEffet' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'compte.proprietaireChequeEffet' | translate}}" autofocus  id="2" [(ngModel)]="item.proprietaireChequeEffet?.nom">
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="3">{{'compte.banque' | translate}}</label>
+                        <input class="mb-2 mr-2" type="text" pInputText [disabled]="true" placeholder="{{'compte.banque' | translate}}" autofocus  id="3" [(ngModel)]="item.banque?.libelle">
+                    </div>
+                </div>
+            </p-tabPanel>
+
+        </p-tabView>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+        <div class="grid-footer">
+            <div>
+                <button pButton pRipple label="Annuler" icon="pi pi-times" class="p-button-outlined" (click)="hideViewDialog()"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
+
+
+
